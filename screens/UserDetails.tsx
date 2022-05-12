@@ -57,14 +57,19 @@ export const UserDetailsScreen = ({ route }: { route: RouteProp<RootStackParamLi
         </View>
 
         <Text style={{
-            margin: 8,
+            marginVertical: 8,
+            paddingLeft:8,
             fontSize: 22,
             fontWeight: "700",
             paddingTop: 2,
             paddingBottom: 2,
-            backgroundColor: "#eee"
+            backgroundColor: "#9c9",
+            color:"#fff"
         }}>User Details</Text>
-        <ScrollView>
+        <ScrollView style={{
+            backgroundColor: "#f5f5f5"
+
+        }}>
             <View style={styles.row2}>
 
 
@@ -81,29 +86,33 @@ export const UserDetailsScreen = ({ route }: { route: RouteProp<RootStackParamLi
             <View style={styles.listContainer}>
                 <TextTile title="Followers" data={`${followers.length}`} />
                 <FlatList
+                    nestedScrollEnabled
+                    horizontal
                     style={{ flex: 1 }}
                     data={followers}
                     keyExtractor={itm => `${itm.id}`}
-                    ItemSeparatorComponent={() => (<View style={{
-                        height: 2,
-                        backgroundColor: "black"
-                    }}></View>)}
+                    // ItemSeparatorComponent={() => (<View style={{
+                    //     width: 2,
+                    //     backgroundColor: "grey"
+                    // }}></View>)}
                     renderItem={(itm) => (
-                        <UserCard clickable={false} item={itm.item}></UserCard>
+                        <UserCard clickable={false} item={itm.item}/>
 
                     )} />
             </View>
             <View style={styles.listContainer}>
                 <TextTile title="Following" data={`${following.length}`} />
                 <FlatList
+                    nestedScrollEnabled
+                    horizontal
                     data={following}
                     keyExtractor={itm => `${itm.id}`}
-                    ItemSeparatorComponent={() => (<View style={{
-                        height: 2,
-                        backgroundColor: "black"
-                    }}></View>)}
+                    // ItemSeparatorComponent={() => (<View style={{
+                    //     height: 2,
+                    //     backgroundColor: "black"
+                    // }}></View>)}
                     renderItem={(itm) => (
-                        <UserCard clickable={false} item={itm.item}></UserCard>
+                        <UserCard clickable={false} item={itm.item} />
 
                     )} />
             </View>
@@ -134,7 +143,7 @@ const styles = StyleSheet.create({
     col2: {
         flex: 0.3,
         borderRadius: 20,
-        borderColor: "red",
+        borderColor: "#9c9",
         borderWidth: 1,
         overflow: "hidden"
     },
@@ -142,6 +151,7 @@ const styles = StyleSheet.create({
         // height: "50%",
     },
     listContainer: {
-        height: "10%",
+        width:"100%"
+        // height: "10%",
     }
 });
