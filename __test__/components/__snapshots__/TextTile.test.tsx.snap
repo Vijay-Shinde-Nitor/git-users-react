@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+      "margin": 8,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "paddingRight": 8,
+      }
+    }
+  >
+    Name: 
+    :
+  </Text>
+  <Text
+    numberOfLines={2}
+    style={
+      Object {
+        "fontSize": 16,
+        "fontWeight": "normal",
+        "overflow": "hidden",
+        "paddingRight": 8,
+      }
+    }
+  >
+    Vijay
+  </Text>
+</View>
+`;

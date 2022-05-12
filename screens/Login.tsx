@@ -63,7 +63,7 @@ function LoginScreen({ navigation }: { navigation: any }) {
         }, 2000);
 
     }
-    
+
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -91,11 +91,13 @@ function LoginScreen({ navigation }: { navigation: any }) {
                         }}
                     />
                     {isLoading ?
-                        (<View style={{ ...styles.button, flexDirection: "row", justifyContent:"center"}}>
+                        (<View style={{ ...styles.button, flexDirection: "row", justifyContent: "center" }}>
                             <Text style={styles.buttonText}>Please wait... </Text>
                             <ActivityIndicator size="small" />
                         </View>) :
-                        <TouchableHighlight style={styles.button}
+                        <TouchableHighlight
+                            testID="loginButton"
+                            style={styles.button}
                             underlayColor="#78bbcc"
                             onPress={handleSubmit} >
                             <Text style={styles.buttonText}>Login </Text>
