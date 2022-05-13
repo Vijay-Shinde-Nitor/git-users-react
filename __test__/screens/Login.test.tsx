@@ -56,11 +56,11 @@ describe("Login Screen", () => {
 
 
 
-        act(() => {
+        // act(() => {
 
-            fireEvent.press(loginButton);
+        await fireEvent.press(loginButton);
 
-            // expect(navigation.replace).toBeCalled();
-        });
+        await waitFor(() => expect(navigation.replace).not.toBeCalled());
+        // });
     });
 });

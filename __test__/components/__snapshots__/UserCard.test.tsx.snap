@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "borderRadius": 8,
+      "flex": 1,
+      "margin": 8,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+          "padding": 8,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flex": 0.2,
+            "padding": 8,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": undefined,
+            }
+          }
+          style={
+            Object {
+              "backgroundColor": "#eee",
+              "flex": 1,
+              "resizeMode": "cover",
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 0.8,
+            "padding": 8,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 20,
+              "fontWeight": "bold",
+              "marginBottom": 5,
+              "paddingBottom": 10,
+              "paddingTop": 10,
+            }
+          }
+        >
+          vijay
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
