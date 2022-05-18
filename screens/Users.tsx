@@ -17,8 +17,10 @@ const UserListScreen = () => {
             <View style={{
                 flex: 1,
                 justifyContent: "center",
-                alignContent:"center"
-            }}><ActivityIndicator size="large" color="#00ff00" /></View>
+                alignContent: "center"
+            }}>
+                <ActivityIndicator size="large" color="#00ff00" />
+            </View>
         );
     }
 
@@ -26,7 +28,7 @@ const UserListScreen = () => {
         <FlatList
             data={gitUserList}
             keyExtractor={itm => `${itm.id}`}
-            renderItem={(item) => (<UserCard clickable={true} item={item.item} />)}
-        />);
+            renderItem={(item) => (<UserCard clickable={true} item={item.item} />)} />
+    );
 };
 export default UserListScreen;

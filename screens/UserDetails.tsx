@@ -3,10 +3,11 @@ import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Image, ActivityIndicator, ScrollView, FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { TextTile } from "../components/TextTile";
-import { RootStackParamList, UserCard } from "../components/UserCard";
+import { UserCard } from "../components/UserCard";
 import { GitUsersDispatch, RootState } from "../store/store";
 import { fetchGitFollowers, fetchGitFollowings, fetchGitUserDetails } from "../store/userListSlice";
 import { ModelGitUser } from "../types/ModelGitUsers";
+import { RootStackParamList } from "../types/NavigationStackParams";
 
 export const UserDetailsScreen = ({ route }: { route: RouteProp<RootStackParamList, 'UserDetails'> }) => {
     const { gitUserDetails, loadingDetails, error, followers, following } = useSelector((state: RootState) => ({ ...state.app }));
@@ -18,11 +19,8 @@ export const UserDetailsScreen = ({ route }: { route: RouteProp<RootStackParamLi
             dispath(fetchGitFollowers(username)).then(() => {
                 dispath(fetchGitFollowings(username))
             })
-
         });
     }, []);
-
-
 
 
     if (loadingDetails || gitUserDetails == null) {
@@ -31,14 +29,18 @@ export const UserDetailsScreen = ({ route }: { route: RouteProp<RootStackParamLi
                 flex: 1,
                 justifyContent: "center",
                 alignContent: "center"
-            }}><ActivityIndicator size="large" color="#00ff00" /></View>
+            }}>
+                <ActivityIndicator size="large" color="#00ff00" />
+            </View>
         );
     }
 
     if (error !== "") {
-        return (<View style={styles.container}>
-            <Text>error</Text>
-        </View>);
+        return (
+            <View style={styles.container}>
+                <Text>error</Text>
+            </View>
+        );
     }
 
     const userDetails: ModelGitUser = gitUserDetails as ModelGitUser;
@@ -52,26 +54,23 @@ export const UserDetailsScreen = ({ route }: { route: RouteProp<RootStackParamLi
             </View>
 
             <Image style={styles.col2} source={{ uri: userDetails.avatar_url }} />
-
-
         </View>
 
         <Text style={{
             marginVertical: 8,
-            paddingLeft:8,
+            paddingLeft: 8,
             fontSize: 22,
             fontWeight: "700",
             paddingTop: 2,
             paddingBottom: 2,
             backgroundColor: "#9c9",
-            color:"#fff"
+            color: "#fff"
         }}>User Details</Text>
         <ScrollView style={{
             backgroundColor: "#f5f5f5"
 
         }}>
             <View style={styles.row2}>
-
 
                 <TextTile title="Login" data={username} />
                 <TextTile title="Bio" data={userDetails.bio ?? " NA "} />
@@ -91,12 +90,8 @@ export const UserDetailsScreen = ({ route }: { route: RouteProp<RootStackParamLi
                     style={{ flex: 1 }}
                     data={followers}
                     keyExtractor={itm => `${itm.id}`}
-                    // ItemSeparatorComponent={() => (<View style={{
-                    //     width: 2,
-                    //     backgroundColor: "grey"
-                    // }}></View>)}
                     renderItem={(itm) => (
-                        <UserCard clickable={false} item={itm.item}/>
+                        <UserCard clickable={false} item={itm.item} />
 
                     )} />
             </View>
@@ -107,10 +102,6 @@ export const UserDetailsScreen = ({ route }: { route: RouteProp<RootStackParamLi
                     horizontal
                     data={following}
                     keyExtractor={itm => `${itm.id}`}
-                    // ItemSeparatorComponent={() => (<View style={{
-                    //     height: 2,
-                    //     backgroundColor: "black"
-                    // }}></View>)}
                     renderItem={(itm) => (
                         <UserCard clickable={false} item={itm.item} />
 
@@ -133,7 +124,6 @@ const styles = StyleSheet.create({
     },
     row1: {
         flexDirection: "row",
-        // flex:1,
         height: "20%",
         marginBottom: 16
     },
@@ -148,10 +138,8 @@ const styles = StyleSheet.create({
         overflow: "hidden"
     },
     row2: {
-        // height: "50%",
     },
     listContainer: {
-        width:"100%"
-        // height: "10%",
+        width: "100%"
     }
 });

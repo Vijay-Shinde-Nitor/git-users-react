@@ -1,16 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ActivityIndicator, Alert, SafeAreaView, StyleSheet, Text, TextInput, TouchableHighlight, View } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../types/NavigationStackParams";
 
 const KEY_USER_DATA = "USER_DATA";
 
+type Prop = NativeStackNavigationProp<RootStackParamList, 'UserList'>
 
-function LoginScreen({ navigation }: { navigation: any }) {
+function LoginScreen({ navigation }: { navigation: Prop }) {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setLoading] = useState(false);
-    let timeout: any = useRef();
-    // AsyncStorage.clear();
+    let timeout = useRef<ReturnType<typeof setTimeout>>();
 
     const checkAlreadyLogin = async () => {
         setLoading(true);
@@ -22,15 +24,13 @@ function LoginScreen({ navigation }: { navigation: any }) {
             if (result != null) {
                 navigation.replace("UserList");
             }
-            clearTimeout(timeout.current)
-
+            clearTimeout(timeout.current!);
         }, 2000);
+
     }
 
     useEffect(() => {
         checkAlreadyLogin();
-
-        // return(()=> clearTimeout(timeout.current))
     }, []);
 
     const handleSubmit = () => {
@@ -44,7 +44,7 @@ function LoginScreen({ navigation }: { navigation: any }) {
     }
 
 
-    const handleLogin = async () => {
+    const handleLogin = (): void => {
         setLoading(true);
         timeout.current = setTimeout(async () => {
             setLoading(false);
@@ -54,12 +54,13 @@ function LoginScreen({ navigation }: { navigation: any }) {
             } else {
                 try {
                     await AsyncStorage.setItem(KEY_USER_DATA, JSON.stringify({ username: userName, password: password }));
+                    clearTimeout(timeout.current!);
                     navigation.replace("UserList");
                 } catch (error) {
                     alert(`Something went wrong. ${error}`);
                 }
             }
-            clearTimeout(timeout.current);
+            clearTimeout(timeout.current!);
         }, 2000);
 
     }

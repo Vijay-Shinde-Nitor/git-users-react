@@ -3,11 +3,11 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React from "react";
 import { StyleSheet, View, Text, ListRenderItemInfo, Image, TouchableHighlight } from "react-native";
 import { ModelGitUser } from "../types/ModelGitUsers";
-export type RootStackParamList = {
-    UserDetails: { username: string };
-};
+import { RootStackParamList } from "../types/NavigationStackParams";
+
+
 export const UserCard = ({ item, clickable = true }: { item: ModelGitUser, clickable: boolean }) => {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList,'UserDetails'>>();
     return (
         <View style={styles.container}>
             <TouchableHighlight onPress={() => {

@@ -1,3 +1,4 @@
+import React from "react";
 import { View, Text, StyleSheet } from "react-native"
 
 export const TextTile = ({ title, data }: { title: string, data: string }) => {
@@ -21,6 +22,6 @@ const styles = StyleSheet.create({
         fontWeight: "normal",
         fontSize: 16,
         overflow: "hidden",
-        paddingRight: 8        
+        paddingRight: 8
     },
 })

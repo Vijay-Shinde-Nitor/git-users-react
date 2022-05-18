@@ -1,11 +1,14 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { Provider } from 'react-redux';
 import LoginScreen from './screens/Login';
 import { UserDetailsScreen } from './screens/UserDetails';
 import UserListScreen from './screens/Users';
 import store from './store/store';
+import { Pressable, Text } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { RootStackParamList } from './types/NavigationStackParams';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +25,16 @@ export default function App() {
           <Stack.Screen
             name='UserList'
             component={UserListScreen}
-            options={{ title: 'Git Users' }}
+            options={({ navigation }: { navigation: NativeStackNavigationProp<RootStackParamList, 'Login'> }) => ({
+              title: 'Git Users', headerRight: () => {
+                return <Pressable onPress={() => {
+                  AsyncStorage.clear();
+                  navigation.replace('Login')
+                }}>
+                  <Text>Logout</Text>
+                </Pressable>;
+              }
+            })}
           />
           <Stack.Screen
             name='UserDetails'
